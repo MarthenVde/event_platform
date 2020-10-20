@@ -1,0 +1,58 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark box-shadow bg-white border-bottom">
+    <% if content_for?(:navbar_logo) %>
+    <%= yield(:navbar_logo) %>
+    <% else %>
+    <a class="navbar-brand" href="<%= root_path %>">
+      <% if @logo&.attached? %>
+      <%= image_tag @logo.variant(resize_to_fit: [450, 80]), class: "banner-logo", alt: Setting.website_title %>
+      <% else %>
+      <%= image_tag asset_path('400.png'), class: "banner-logo", alt: Setting.website_title %>
+      <% end %>
+    </a>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav nav-pills ml-auto">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Events', events_path, class: "nav-link#{' active' if current_page?(events_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'How virtual expos work ',  how_virtual_expos_work_path, class: "nav-link#{' active' if current_page?( how_virtual_expos_work_path)}" %>
+        </li>
+        <% if user_signed_in? && current_user.site_admin %>
+        <li class="nav-item">
+          <%= link_to 'Users Management', users_path, class: "nav-link#{' active' if current_page?(users_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Site Settings', admin_settings_path, class: "nav-link#{' active' if current_page?(admin_settings_path)}" %>
+        </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: "nav-link#{' active' if current_page?(about_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_path, class: "nav-link#{' active' if current_page?(contact_path)}" %>
+        </li>
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Sign out', destroy_user_session_path, method: :get, class: 'nav-link' %>
+        </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to 'Sign in', new_user_session_path, class: "nav-link#{' active' if current_page?(new_user_session_path)}" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+<%= yield :banner_content %>

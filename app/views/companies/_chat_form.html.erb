@@ -1,0 +1,26 @@
+<div>
+  <div id="new_message">
+  </div>
+  <%= form_with(company: company, user: user, url: chats_path, remote: true) do |form| %>
+  <%= form.hidden_field :company, value: company.id %>
+  <%= form.hidden_field :user, value: user.name %>
+
+  <div id="chat-message-box" class="field" hidden="true">
+    <%= form.label :message %>
+    <%= form.text_area :message %>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col">
+      <button id="join-chat" class="btn btn-primary">Join Chat</button>
+      <%= form.submit :Send, class: "btn btn-success", id: "send-message", hidden: true %>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-danger" onclick="closeForm()">Close</button>
+    </div>
+  </div>
+
+  <% end %>
+</div>

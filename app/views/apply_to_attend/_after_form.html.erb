@@ -1,0 +1,122 @@
+<h5>Please provide us with your contact details and we will keep you informed of our future expo’s. You can also visit
+  www.homeschoolexpo.co.za for more information.</h5>
+<%= form_with(model: @user, url: create_user_for_event_path, method: "post", local: true) do |form| %>
+<% if @user.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+  <hr>
+  <p class="mb-0">
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  </p>
+</div>
+<% end %>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :name, class: "control-label" %>
+    <%= form.text_field :name, class: 'form-control', placeholder: :name, required: true %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: 'form-control', placeholder: :last_name, required: true%>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <%= form.label :country %>
+    <select id="country" class="form-control">
+      <option value="-1">
+        Please Select...
+      </option>
+      <% CS.get.each do |key, value| %>
+      <option value="<%= key %>">
+        <%= value %>
+      </option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <%= form.label :'State/Province', class: "control-label" %>
+    <select id="province" class="form-control">
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <%= form.label :city, class: "control-label" %>
+    <select id="city" class="form-control">
+    </select>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :email, class: "control-label" %>
+    <%= form.email_field :email, class: 'form-control', placeholder: :email, required: true %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :phone, class: "control-label" %>
+    <%= form.phone_field :phone, class: 'form-control', placeholder: :phone, required: true %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :password %>
+    <%= form.password_field  :password, class: 'form-control', placeholder: :password, required: true %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :'What Describes you', class: "control-label" %>
+    <%= form.collection_select :user_description, @event.user_description_selects,:value,:value, {include_blank: "Choose..."}, {class: 'form-control', required: true} %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :home_language, class: "control-label" %>
+    <%= form.text_field :language, class: 'form-control', placeholder: :home_language, required: true %>
+  </div>
+</div>
+<div class="row">
+  <div class="col"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %></div>
+  <div><%= form.submit :Submit, class: "btn btn-primary" %></div>
+</div>
+<% end %>
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Terms and Conditions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= @event.terms_and_conditions %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdropfaq" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Frequently Asked Questions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= @event.faq %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Zoom User</h1>
+    <h2><%= @zoom_user.first_name %></h2>
+  </div>
+</div>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @zoom_user.email %>
+  </p>
+
+  <p>
+    <strong>First name:</strong>
+    <%= @zoom_user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @zoom_user.last_name %>
+  </p>
+
+  <p>
+    <strong>Type:</strong>
+    <%= @zoom_user.user_type %>
+  </p>
+
+  <p>
+    <strong>Zoom user:</strong>
+    <%= @zoom_user.zoom_user_id %>
+  </p>
+  <%= link_to 'Back', zoom_users_path %>
+</div>

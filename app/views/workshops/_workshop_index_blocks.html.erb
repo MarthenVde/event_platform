@@ -1,0 +1,27 @@
+<div class="row mt-4 justify-content-center">
+  <% resources.each do |workshop| %>
+  <div class="card mb-3" style="width: 500px; background-color: #098cff17;">
+    <div class="row no-gutters">
+      <div class="col-4 my-auto">
+        <h5 style="margin-left: 5px;"><b><%= workshop.starts_at&.strftime("%H:%M") %> -
+            <%= workshop.ends_at&.strftime("%H:%M") %></b></h5>
+        <% if workshop.avatar.attached? && workshop.avatar.variable? %>
+        <%= image_tag workshop.avatar.variant(resize_to_fit: [200, 200]), class: "card-img-workshop align-center", style: "padding: 0px;", alt: workshop.title %>
+        <% end %>
+      </div>
+      
+      <div class="col-8">
+        <div class="card-body d-flex flex-column">
+           <h4 class="card-title-workshop"><%= workshop.title%></h4>
+          <h6><%= workshop.facilitator %></h6>
+          <p class="workshops-card"><%= workshop.description %></p>
+        </div>
+      </div>
+    </div>
+    <% if user_signed_in? && policy(workshop).show? %>
+    <%= link_to 'Show', event_workshop_path(@event, workshop), class: "btn btn-primary btn-lg mt-auto" %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<%= render 'events/chatra_event', event: @event %>

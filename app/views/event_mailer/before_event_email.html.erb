@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+  <h1>Welcome as an <%= @event.name %> Vistor at the Online Home Education Expo - Africa 2020</h1>
+
+  <h4>Thank you for registering to attend the Online Home Education Expo (www.homeschoolexpo.africa).</h4>
+    <br>
+    The expo will commence on <%= @event.starts_at.strftime("%a %d %B %Y") %> at <%= @event.starts_at.strftime("%H:%M") %> and close for visitors on <%= @event.ends_at.strftime("%a %d %B %Y") %> at <%= @event.ends_at.strftime("%H:%M") %>
+    <br>
+    The PDF expo program will be completed a week before the expo and we will email the link to download it as soon as it becomes available.
+    <br>
+    For the duration of the expo you will be able to view presentations, visit and interact with exhibitors and participate in workshops, by signing in with your email address and the password that you have just created.'
+ 
+
+  <p>
+    <br><br>
+    For any assistance: +27 87 231 1644 or expo@tuisskolers.org
+    <br><br>
+    Regards
+    <br>
+    The Expo team
+  </p>
+</body>
+
+</html>

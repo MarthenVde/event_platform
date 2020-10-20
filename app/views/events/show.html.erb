@@ -1,0 +1,123 @@
+<% content_for :banner_content do %>
+<%= render 'layouts/banner_event', event: @event %>
+<% end %>
+
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+
+<% content_for :social_links do %>
+<%= render 'social_links', event: @event %>
+<% end %>
+
+<% content_for :page_title do %>
+  <title><%= "#{@event.name}" %> </title>
+<% end %>
+
+<div class="banner">
+  <div class="mx-auto">
+    <h1><%= @event.name %></h1>
+  </div>
+</div>
+<div class="container">
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <h4><%= notice %></h4>
+  </div>
+  <% end %>
+  <div class="row">
+    <% if policy(@event).update? %>
+    <div class="col-auto"><%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success text-left" %></div>
+    <% end %>
+  </div>
+
+  <div class="row justify-content-center">
+    <%= render 'navigation_info_blocks', event: @event %>
+  </div>
+  <div class="row justify-content-center">
+    <%= @event.home_page_data %>
+  </div>
+
+  
+
+<div class="card-deck">
+  <% @videos.each do |video| %>
+  <div class="card ">
+    <img class="card-img-top">
+    <iframe height="600px" min-width="500px" src="https://www.youtube.com/embed/<%= video.path %>" frameborder="0"
+      allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </img>
+  </div>
+  <% end %>
+</div>
+
+  <% if @event.sponsors.any? %>
+  <div class="row justify-content-center">
+    <h1>Sponsors</h1>
+  </div>
+  <div class="container">
+    <div class="row mt-6 justify-content-center height=600px ">
+      <% @event.sponsors.each do |sponsor| %>
+      <div class="card mx-2 mb-3"><a href="<%= sponsor.description %>" target="_blank">
+          <div class="content-overlay"></div>
+          <% if sponsor.image.attached? %>
+          <%= image_tag sponsor.image.variant(resize_to_fill: [450, 250, { gravity: 'west' }]), class: "card-img align-center" , alt: sponsor.title %>
+
+          <% end %>
+        </a>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="row">
+      <% if policy(@event).update? %>
+      <div class="col-auto"><%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success text-left" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if @event.home_page_data.present? %>
+  <div class="row justify-content-center">
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>Featured Exhibitors</h1>
+    </div>
+    <div class="row mt-4 justify-content-center">
+      <% if @event.show_featured_companies %>
+      <% @companies.each do |company| %>
+      <div class="card mx-2 mb-3">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="companies-index-block">
+                <% if company.flipcard_banner.attached? %>
+                <%= image_tag company.flipcard_banner.variant(resize_to_fill: [400, 250]), class: "card-img-top image", alt: company.name %>
+                <% else %>
+                <%= image_tag asset_path('400.png'), class: "card-img-top image", alt: company.name, style: "max-width: 400px; max-height: 185px" %>
+                <% end %>
+                <div class="middle">
+                  <% if company.avatar.attached? && company.avatar.variable? %>
+                  <%= image_tag company.avatar.variant(resize_to_fill: [60, 60, { gravity: 'center' }]), class: "avatar img-circle" %>
+                  <% else %>
+                  <%= image_tag asset_path('400.png'), class: "avatar img-circle", style: "max-height: 60px" %>
+                  <% end %>
+                </div>
+                <div class="text"><%= company.name %></div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <h4>What we do?</h4>
+              <span class="card-elipses text-center"><%= company.description_text %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+</div>
+<%= render 'chatra_event' %>

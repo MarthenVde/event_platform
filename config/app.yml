@@ -1,0 +1,23 @@
+
+class Setting < RailsSettings::Base
+  cache_prefix { 'you-prefix' }
+
+# config/app.yml
+defaults: &defaults
+  github_token: "123456"
+  twitter_token: "<%= ENV["TWITTER_TOKEN"] %>"
+  foo:
+    bar: "Foo bar"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+
+
+end

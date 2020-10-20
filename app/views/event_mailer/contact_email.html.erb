@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Contact request for <%= @event.name %> </h1>
+    <p>
+      Person Contacting you:<br>
+    </p>
+    <p>Name: <%= @contact_params[:first_name] %> </p>
+    <p>Last Name: <%= @contact_params[:last_name] %></p>
+    <p>Email: <%= @contact_params[:email] %></p>
+    <p>Phone: <%= @contact_params[:contact_number] %></p>
+    <p>Topic: <%= @contact_params[:topic] %></p>
+    <h1>Message:</h1>
+    <p><%= @contact_params[:message] %></p>
+  </body>
+</html>

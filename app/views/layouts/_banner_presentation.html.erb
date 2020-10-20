@@ -1,0 +1,42 @@
+<div class="site-blocks-cover overlay parallax"
+  style='background-position: center center ; background-image: url(<%= @presentation.banner.attached? ? url_for(@presentation.banner) : url_for(asset_url("1900x700.png")) %> );'>
+  <div class="container" style="height: 100%">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-12">
+        <div class="align-items-center justify-content-right text-center banner-text-background">
+          <div class="col-12">
+            <div class="row justify-content-right mb-4">
+              <div class="col-12 text-center">
+                <h1><%= @presentation.title %></h1>
+                <p><%= @presentation.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <% if !user_signed_in? %>
+          <!-- user not signed in, give option to create event-attendee for event-->
+          <%= link_to 'Register as Visitor', create_user_for_event_path(event), class: "btn btn-success btn-lg text-left" %>
+          <%= link_to 'Apply to Exhibit', new_user_and_company_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+
+          <% elsif !current_user.part_of_event?(event) %>
+          <%= link_to 'Join Event', join_event_path(event), remote: true, method: :post, class: "btn btn-success btn-lg text-left", id: "join-#{event.id}" %>
+          <!-- add different 'apply to exhibit' button here to just create the company when user is logged in-->
+          <!-- TODO: add button here -->
+          <%= link_to 'Apply to Exhibit', new_company_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+          <!-- -->
+
+          <% end %>
+          <% if !user_signed_in? %>
+          <div class="banner-text-secondary-background">
+            <span><%= Setting.banner_text_short %></span>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="nested-fields">
+    <div class="jumbotron jumbotron-fluid" style="padding: 15px;">
+        <%= f.hidden_field :_destroy %>
+        <%= f.hidden_field :reference, value: 'photo_tab' %>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <%= f.label :attachment, class: "control-label" %>
+                <%= f.file_field :attachment, class: "control-label" %>
+                <% if f.object.attachment.attached? && f.object.attachment.variable?%>
+                <%= image_tag f.object.attachment.variant(resize_to_fit: [50, 50]) %>
+                <% end %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <%= f.label :caption, class: "control-label" %>
+                <%= f.text_field :title, class: 'form-control', placeholder: :title  %>
+            </div>
+        </div>
+        <div>
+            <div class="row justify-content-left">
+                <div class="col-3">
+                    <%= link_to "Remove", '#', class: "remove_fields btn btn-danger" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

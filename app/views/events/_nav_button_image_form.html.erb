@@ -1,0 +1,36 @@
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :workshop_image %>
+    <%= f.file_field :workshop_image, class: "form-control"%>
+    <% if @event.workshop_image.attached? && @event.workshop_image.variable? %>
+    <%= image_tag @event.workshop_image.variant(resize_to_fit: [50, 50]) %>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :presentation_image %>
+    <%= f.file_field :presentation_image, class: "form-control"%>
+    <% if @event.presentation_image.attached? && @event.presentation_image.variable? %>
+    <%= image_tag @event.presentation_image.variant(resize_to_fit: [50, 50]) %>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :exhibitor_image %>
+    <%= f.file_field :exhibitor_image, class: "form-control"%>
+    <% if @event.exhibitor_image.attached? && @event.exhibitor_image.variable? %>
+    <%= image_tag @event.exhibitor_image.variant(resize_to_fit: [50, 50]) %>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :who_should_attend_image %>
+    <%= f.file_field :who_should_attend_image, class: "form-control"%>
+    <% if @event.who_should_attend_image.attached? && @event.who_should_attend_image.variable? %>
+    <%= image_tag @event.who_should_attend_image.variant(resize_to_fit: [50, 50]) %>
+    <% end %>
+  </div>
+</div>

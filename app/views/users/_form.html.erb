@@ -1,0 +1,130 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<%= form_with(model: user, local: true) do |form| %>
+<% if user.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h4>
+  <hr>
+  <p class="mb-0">
+  <ul>
+    <% user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  </p>
+</div>
+<% end %>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user"
+      aria-selected="true">User Details</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="company-exhibitors-tab" data-toggle="tab" href="#company-exhibitors" role="tab"
+      aria-controls="company-exhibitors" aria-selected="true">Company Exhibitors</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="event-admins-tab" data-toggle="tab" href="#event-admins" role="tab"
+      aria-controls="event-admins" aria-selected="true">Event Admins</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="event-attendees-tab" data-toggle="tab" href="#event-attendees" role="tab"
+      aria-controls="event-attendees" aria-selected="false">Event Attendees</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="site-admin-tab" data-toggle="tab" href="#site-admin" role="tab" aria-controls="site-admin"
+      aria-selected="false">Site Admin</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+    <br>
+    <h3>User Details</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :name, class: "control-label" %>
+        <%= form.text_field :name, class: 'form-control', placeholder: :name %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form.label :last_name, class: "control-label" %>
+        <%= form.text_field :last_name, class: 'form-control', placeholder: :last_name %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :email, class: "control-label" %>
+        <%= form.text_field :email, class: 'form-control', placeholder: :email %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form.label :country, class: "control-label" %>
+        <%= form.text_field :country, class: 'form-control', placeholder: :country %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :phone, class: "control-label" %>
+        <%= form.text_field :phone, class: 'form-control', placeholder: :phone %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="company-exhibitors" role="tabpanel" aria-labelledby="company-exhibitors-tab">
+    <div class="row">
+      <fieldset>
+        <h3>Add User as Company Exhibitor(s), below</h3>
+        <hr>
+        <%= form.fields_for :company_exhibitors do |user_company_selects_form| %>
+        <%= render "company_exhibitor_fields", f: user_company_selects_form %>
+        <% end %>
+        <%= link_to_add_fields "Add Exhibitor", form, :company_exhibitors %>
+      </fieldset>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="event-admins" role="tabpanel" aria-labelledby="event-admins-tab">
+    <div class="row">
+      <fieldset>
+        <h3>Add User as Event Admin(s), below</h3>
+        <hr>
+        <%= form.fields_for :event_admins do |event_admin_form| %>
+        <%= render "event_admin_fields", f: event_admin_form %>
+        <% end %>
+        <%= link_to_add_fields "Add Event Admin", form, :event_admins %>
+      </fieldset>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="event-attendees" role="tabpanel" aria-labelledby="event-attendees-tab">
+    <div class="row">
+      <fieldset>
+        <h3>Add User as Event Visitor(s), below</h3>
+        <hr>
+        <%= form.fields_for :event_attendees do |event_attendee_form| %>
+        <%= render "event_attendee_fields", f: event_attendee_form %>
+        <% end %>
+        <%= link_to_add_fields "Add Event Attendee", form, :event_attendees %>
+      </fieldset>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="site-admin" role="tabpanel" aria-labelledby="sit-admin-tab">
+    <div class="row">
+      <fieldset>
+        <h3>Make User a Site Admin</h3>
+        <hr>
+        <%= form.fields_for :site_admin do |site_admin_form| %>
+        <div class='form-item'>
+          <%= site_admin_form.check_box :_destroy, { checked: @user.site_admin&.persisted? }, '0', '1' %>
+          <%= site_admin_form.label :_destroy, 'Site Admin', class: 'checkbox' %>
+        </div>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md">
+    <div class="d-flex justify-content-end">
+      <div class="pull-right"><%= form.submit :Submit, class: "btn btn-primary btn-lg" %></div>
+    </div>
+  </div>
+</div>
+<% end %>

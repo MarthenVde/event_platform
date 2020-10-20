@@ -1,0 +1,48 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+
+<% content_for :social_links do %>
+<%= render 'social_links', event: @event %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1><%= @event.name %></h1>
+    <h2>Presentations</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <% @event&.presentations&.each do |presentation| %>
+    <div class="card mb-3 " style="max-width: 540px;">
+      <div class="row no-gutters">
+        <h5 class="card-title"><%= presentation.starts_at&.strftime("%a %d %B %Y, %H:%M") %> <%= presentation.ends_at&.strftime("%a %d %B %Y, %H:%M") %></h5>
+        <div class="col-md-4">
+          <% if presentation.image.attached? %>
+          <%= image_tag presentation.image.variant(resize_to_fit: [400, 400]), class: "card-img-workshop align-center ", alt: presentation.title %>
+          <% end %>
+        </div>
+        <div class="col-md-8">
+          <h2>
+            <p class="lead"><%= presentation.title%></p>
+          </h2>
+          <div class="card-body">
+            <p class="lead"><%= presentation.description %></p>
+            <p class="card-text">
+            <ul>
+              <% presentation.presentation_presenters.each do |presentation_presenter| %>
+              <li><%= presentation_presenter.company_exhibitor.user.full_name %></li>
+              <% end %>
+            </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col pull-left"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %></div>
+  </div>
+</div>

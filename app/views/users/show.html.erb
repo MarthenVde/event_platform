@@ -1,0 +1,36 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>User Profile</h1>
+    <h2><%= @user.name %> <%= @user.last_name %></h2>
+  </div>
+</div>
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Country</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @user.name %></td>
+        <td><%= @user.last_name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.country %></td>
+        <td><%= @user.phone %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-secondary btn-sm' %> |
+  <%= link_to 'Back', users_path, class: 'btn btn-primary btn-sm' %>
+</div>

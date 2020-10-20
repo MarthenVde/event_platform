@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <% if !user_signed_in? %>
+  <div class="col-md-3">
+    <div class="content"> <a href="<%= who_should_attend_event_path(event) %>">
+        <div class="content-overlay"></div>
+        <% if @event.who_should_attend_image.attached? %>
+        <%= image_tag event.who_should_attend_image.variant(resize_to_fill: [500, 500, { gravity: 'center' }]), class: "content-image" %>
+        <% else %>
+        <%= image_tag asset_path('400.png'), class: "content-image" %>
+        <% end %>
+        <div class="content-details fadeIn-bottom">
+          <h3 class="content-title">Who should attend?</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+  <% end %>
+  <div class="col-md-3">
+    <div class="content"> <a href="<%= event_presentations_path(event) %>">
+        <div class="content-overlay"></div>
+        <% if @event.presentation_image.attached? %>
+        <%= image_tag event.presentation_image.variant(resize_to_fill: [500, 500, { gravity: 'center' }]), class: "content-image" %>
+        <% else %>
+        <%= image_tag asset_path('400.png'), class: "content-image" %>
+        <% end %>
+        <div class="content-details fadeIn-bottom">
+          <h3 class="content-title">Presentations</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="content"> <a href="<%= event_workshops_path(event) %> ">
+        <div class="content-overlay"></div>
+        <% if @event.workshop_image.attached? %>
+        <%= image_tag event.workshop_image.variant(resize_to_fill: [500, 500, { gravity: 'center' }]), class: "content-image" %>
+        <% else %>
+        <%= image_tag asset_path('400.png'), class: "content-image" %>
+        <% end %>
+        <div class="content-details fadeIn-bottom">
+          <h3 class="content-title">Workshops</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="content"> <a href="<%= event_companies_path(event) %>">
+        <div class="content-overlay"></div>
+        <% if @event.exhibitor_image.attached? %>
+        <%= image_tag event.exhibitor_image.variant(resize_to_fill: [500, 500, { gravity: 'center' }]), class: "content-image" %>
+        <% else %>
+        <%= image_tag asset_path('400.png'), class: "content-image" %>
+        <% end %>
+        <div class="content-details fadeIn-bottom">
+          <h3 class="content-title">Exhibitors</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

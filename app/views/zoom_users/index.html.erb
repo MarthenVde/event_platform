@@ -1,0 +1,42 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Zoom User Management</h1>
+    <h2>(Shared between events)</h2>
+  </div>
+</div>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>User Type</th>
+        <th>Zoom user ID</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @zoom_users.each do |zoom_user| %>
+      <tr>
+        <td><%= zoom_user.email %></td>
+        <td><%= zoom_user.first_name %></td>
+        <td><%= zoom_user.last_name %></td>
+        <td><%= zoom_user.user_type %></td>
+        <td><%= zoom_user.zoom_user_id %></td>
+        <td><%= link_to 'Show', zoom_user %></td>
+        <td><%= link_to 'Destroy', zoom_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Zoom User', new_zoom_user_path %>
+</div>

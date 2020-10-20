@@ -1,0 +1,22 @@
+<div class="nested-fields">
+  <div class="" style="padding: 15px;">
+    <%= f.hidden_field :_destroy %>
+      <div class="input-group col-md-8">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :title, class: "control-label" %>
+            <%= f.text_field :title, class: 'form-control', placeholder: :title  %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :about, class: "control-label" %>
+            <%= f.rich_text_area :about, class: "form-control" %>
+          </div>
+        </div>
+        <div class="input-group-append">
+          <%= link_to "Remove Information Block", '#', class: "remove_fields btn btn-outline-danger" %>
+        </div>
+      </div>
+  </div>
+</div>

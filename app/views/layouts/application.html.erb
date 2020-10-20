@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% if content_for?(:page_title) %>
+    <%= yield(:page_title) %>
+  <% else %>
+    <title><%= Setting.website_title %></title>
+  <% end %>
+  
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= Setting.meta_description %>">
+  <meta name="keywords" content="<%= Setting.meta_keywords %>">
+
+
+
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Setting.google_analytics_id %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<%= Setting.google_analytics_id %>');
+  </script>
+
+</head>
+
+<body>
+  <div id="google_analytics_id" style="display: none"><%= Setting.google_analytics_id %></div>
+
+  <% if content_for?(:event_navbar) %>
+  <%= yield(:event_navbar) %>
+  <% elsif content_for?(:main_navbar) %>
+  <%= render "layouts/navbar" %>
+  <% end %>
+
+  <%= yield %>
+
+
+  <%= render "layouts/footer" %>
+</body>
+
+</html>

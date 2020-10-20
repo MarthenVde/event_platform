@@ -1,0 +1,12 @@
+<div class="mt-10 justify-content-center border rounded clearfix bg-primary">
+  <% @company.information_blocks.each do |side_bar| %>
+  <div class="card mb-12" style="max-width: 500px;">
+    <div class="card-body col-md-12">
+      <h2>
+        <%= side_bar.title %>
+      </h2>
+      <h5><%= side_bar.about%></h5>
+    </div>
+  </div>
+  <% end %>
+</div>

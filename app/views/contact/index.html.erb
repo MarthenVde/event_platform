@@ -1,0 +1,31 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Contact us</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12">
+      <%= render 'form' %>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="aos-init aos-animate" data-aos="fade" data-aos-delay="100">
+        <div class="p-2 mb-3 bg-white">
+          <h3 class="h5 text-black mb-3">Address</h3>
+          <p class="mb-4"><%= Setting.public_address %></p>
+          <h3 class="h5 text-black mb-3">Phone</h3>
+          <p class="mb-4"><%= Setting.public_contact %></p>
+          <h3 class="h5 text-black mb-3">Email Address</h3>
+          <p class="mb-0"></a><%= Setting.public_email %></p>
+        </div>
+        <div class="p-2 mb-3 bg-white">
+          <h3 class="h5 text-black mb-3">More Info</h3>
+          <p><%= Setting.public_contact_more %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

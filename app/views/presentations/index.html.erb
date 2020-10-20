@@ -1,0 +1,60 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+<% content_for :page_title do %>
+  <title><%= "#{@event.name} - presentations" %> </title>
+<% end %>
+
+<div class="banner">
+  <div class="mx-auto">
+    <h1><%= @event.name %></h1>
+    <h2>Presentations</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="d-flex">
+    <ul class="nav nav-pills mb-3 mx-auto justify-content-center" id="pills-tab" role="tablist">
+      <% if @featured_presentations.any? %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-featured-tab" data-toggle="pill" href="#pills-featured" role="tab"
+          aria-controls="pills-featured" aria-selected="true">Featured Presentations</a>
+      </li>
+      <% end %>
+      <% if @webcam_presentations.any? %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-webcam-tab" data-toggle="pill" href="#pills-webcam" role="tab"
+          aria-controls="pills-webcam" aria-selected="false">Webcam Interviews</a>
+      </li>
+      <% end %>
+      <% if @speaker_presentations.any? %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-speaker-tab" data-toggle="pill" href="#pills-speaker" role="tab"
+          aria-controls="pills-speaker" aria-selected="false">Speaker Presentations</a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-featured" role="tabpanel" aria-labelledby="pills-featured-tab">
+      <% if @featured_presentations.any? %>
+      <%= render 'presentations/presentation_index_blocks', resources: @featured_presentations, type: 'featured' %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="pills-webcam" role="tabpanel" aria-labelledby="pills-webcam-tab">
+      <% if @webcam_presentations.any? %>
+      <%= render 'presentations/presentation_index_blocks', resources: @webcam_presentations, type: 'webcam' %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="pills-speaker" role="tabpanel" aria-labelledby="pills-speaker-tab">
+      <% if @speaker_presentations.any? %>
+      <%= render 'presentations/presentation_index_blocks', resources: @speaker_presentations, type: 'speaker' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %>
+    </div>
+  </div>
+</div>

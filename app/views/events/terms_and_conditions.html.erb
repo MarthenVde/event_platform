@@ -1,0 +1,14 @@
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Terms and Conditions</h1>
+    <h2><%= @event.name %></h2>
+  </div>
+</div>
+<div class="container">
+  <%= @event.terms_and_conditions %>
+
+<hr>
+<div class="row">
+  <div class="col pull-left"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %></div>
+</div>
+</div>

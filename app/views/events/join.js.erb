@@ -1,0 +1,3 @@
+const joinButton = document.getElementById('<%= "join-#{ @event.id }" %>');
+joinButton.parentElement.insertAdjacentHTML('beforeend', '<a class="btn btn-secondary text-left" href="<%= event_companies_path(@event) %>">Event Exhibitors</a>');
+joinButton.style = "display: none";

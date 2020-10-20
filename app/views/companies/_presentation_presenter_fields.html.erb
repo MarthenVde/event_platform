@@ -1,0 +1,13 @@
+<div class="nested-fields">
+  <div class="" style="padding: 15px;">
+    <%= f.hidden_field :_destroy %>
+    <div class="form-row">
+      <div class="input-group col-md-8">
+        <%= f.collection_select :company_exhibitor_id, @company.company_exhibitors,:id,:company_exhibitor_name, {include_blank: "Choose..."}, {class: 'form-control', required: true} %>
+        <div class="input-group-append">
+          <%= link_to "Remove Presenter", '#', class: "remove_fields btn btn-outline-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<header>
+  <nav
+    class="navbar navbar smart-scroll navbar-expand-md navbar-light fixed-top bg-dark box-shadow bg-white border-bottom ">
+
+    <a class="navbar-brand" href="<%= event_path(@event) %>">
+      <% if @event.avatar&.attached? && @event.avatar&.variable? %>
+      <%= image_tag @event.avatar.variant(resize_to_fit: [400, 80]), class: "banner-logo", alt: @event.name %>
+      <% else %>
+      <%= image_tag asset_path('400.png'), class: "banner-logo", style: "max-height: 80px;", alt: @event.name %>
+      <% end %>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav nav-pills ml-auto">
+        <li class="nav-item">
+          <%= link_to 'Home', event_path(@event), class: "nav-link#{' active' if current_page?(event_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Presentations', event_presentations_path(@event), class: "nav-link#{' active' if current_page?(event_presentations_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Workshops', event_workshops_path(@event), class: "nav-link#{' active' if current_page?(event_workshops_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Exhibitors', event_companies_path(@event), class: "nav-link#{' active' if current_page?(event_companies_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'FAQ', faq_event_path(@event), class: "nav-link#{' active' if current_page?(faq_event_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Gallery', gallery_event_path(@event), class: "nav-link#{' active' if current_page?(gallery_event_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About', about_event_path(@event), class: "nav-link#{' active' if current_page?(about_event_path(@event))}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_event_path(@event), class: "nav-link#{' active' if current_page?(contact_event_path(@event))}" %>
+        </li>
+        <% if user_signed_in? && current_user.site_admin %>
+        <li class="nav-item">
+          <%= link_to 'Zoom User Management', zoom_users_path, class: "nav-link#{' active' if current_page?(zoom_users_path)}" %>
+        </li>
+        <% end %>
+        <% if policy(@event).update? %>
+        <li class="nav-item">
+          <%= link_to 'Event Settings', edit_event_path(@event), class: "nav-link#{' active' if current_page?(edit_event_path(@event))}" %>
+        </li>
+        <% end %>
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Sign out', sign_out_event_path(@event), method: :get, class: 'nav-link' %>
+        </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to 'Sign in', sign_in_new_event_path(event), class: "nav-link#{' active' if current_page?(sign_in_new_event_path(event))}" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<%= yield :banner_content %>

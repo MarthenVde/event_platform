@@ -1,0 +1,91 @@
+<div class="nested-fields">
+  <div class="jumbotron jumbotron-fluid" style="padding: 15px;">
+
+    <%= f.hidden_field :_destroy %>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= f.label :title, class: "control-label" %>
+        <%= f.text_field :title, class: 'form-control', placeholder: :title  %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :"Workshop Card Description", class: "control-label" %>
+        <%= f.text_area :description, class: 'form-control', placeholder: :description  %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <h3>Facilitator Name(s)</h3>
+        <%= f.text_field  :facilitator, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :profile_picture %>
+      <%= f.file_field :avatar %>
+      <% if f.object.avatar.attached? && f.object.avatar.variable?%>
+      <%= image_tag f.object.avatar.variant(resize_to_fit: [50, 50]) %>
+      <% end %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :banner %>
+      <%= f.file_field :banner %>
+      <% if f.object.banner.attached? && f.object.banner.variable?%>
+      <%= image_tag f.object.banner.variant(resize_to_fit: [50, 50]) %>
+      <% end %>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3>About the Workshop</h3>
+        <%= f.rich_text_area :about, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3>Meet the Facilitator(s)</h3>
+        <%= f.rich_text_area :workshop_facilitator_info, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3>Enter the Workshop</h3>
+        <%= f.rich_text_area :enter_workshop, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <fieldset>
+        <h3>Date and Time</h3>
+        <hr>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :starts_at, class: "control-label" %> -
+            <%= f.datetime_select :starts_at, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= f.label :ends_at, class: "control-label" %> -
+            <%= f.datetime_select :ends_at, class: "form-control" %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="form-group col-md-12">
+      <%= f.label :zoom_user, class: "control-label" %>
+      <%= f.collection_select :zoom_user_id, ZoomUser.order(:last_name),:id,:zoom_user_description, include_blank: 'Please Select...' %>
+    </div>
+    <div class="form-group col-md-6">
+      <fieldset>
+        <h3>Information Blocks (Optional):</h3>
+        <%= f.fields_for :information_blocks do |information_blocks_form| %>
+        <%= render "information_block_fields", f: information_blocks_form %>
+        <% end %>
+        <%= link_to_add_fields "Add information block", f, :information_blocks %>
+      </fieldset>
+    </div>
+    <div class="row justify-content-left">
+      <div class="col-3">
+        <%= link_to "Remove Workshop", '#', class: "remove_fields btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

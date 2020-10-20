@@ -1,0 +1,30 @@
+  New Stall has been setup: <%= @company.name %>
+
+  The application of <%= @company.name %> to exhibit at the Online Home Education Expo - Africa 2020 has been approved.
+
+  Please use the below log-in information:
+
+    <% @exhibitor_list.each do |exhibitor| %>
+    Email: <%= exhibitor[:email] %>
+    Password: <%= exhibitor[:password] %>
+    <% end %>
+
+  You can set your password by clicking on <%= password_new_event_url(@company.event) %>
+
+
+  To setup your stall:
+
+   - Log-in with your email and newly created password =>
+    <%= sign_in_new_event_url(@company.event) %>
+   - Click on the "Exhibitor" tab =>
+   - Locate your stall and start editing
+ 
+
+    To add another colleague as a staff member of your exhibition go to the Manage Stall Staff tab.
+    When you submit the details of a new staff member he/she will receive an email with their login details.
+  
+    For any assistance: +27 87 231 1644 or expo@tuisskolers.org
+   
+    Regards
+   
+    The Expo team

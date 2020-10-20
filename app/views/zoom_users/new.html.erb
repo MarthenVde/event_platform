@@ -1,0 +1,16 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>New Zoom User</h1>
+    <h2>(Shared between events)</h2>
+  </div>
+</div>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <%= render 'form', zoom_user: @zoom_user %>
+
+  <%= link_to 'Back', zoom_users_path %>
+</div>

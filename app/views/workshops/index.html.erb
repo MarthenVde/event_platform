@@ -1,0 +1,30 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+
+<% content_for :page_title do %>
+  <title><%= "#{@event.name} - workshops" %> </title>
+<% end %>
+
+<div class="banner">
+  <div class="mx-auto">
+    <h1><%= @event.name %></h1>
+    <h2>Workshops</h2>
+  </div>
+</div>
+<div class="container">
+  
+  <% @workshops.keys.each do |key| %>
+    <div class="alert alert-warning" style="background-color: orange;" role="alert">
+      <h2 class="text-center" style="color: white;"><strong><%= key.to_date.strftime("%a %d %B %Y") %></strong></h2>
+    </div>
+    <%= render 'workshops/workshop_index_blocks', resources: @workshops[key] %>
+  <% end %>
+
+  
+  <hr>
+  <div class="row">
+    <div class="col"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %>
+    </div>
+  </div>
+</div>

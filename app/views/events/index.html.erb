@@ -1,0 +1,64 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+
+<% content_for :page_title do %>
+  <title><%= "Events" %> </title>
+<% end %>
+
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Events</h1>
+  </div>
+</div>
+<div class="container">
+  <%= render 'layouts/banner_events_search', banner: @banner %>
+ 
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <h4><%= notice %></h4>
+  </div>
+  <% end %>
+  <div class="container">
+    <div class="row mt-4 justify-content-center">
+      <% @events.each do |event| %>
+      <div class="card mx-2 mb-3">
+        <% if event.avatar.attached? %>
+        <%= image_tag event.avatar.variant(resize_to_fit: [400, 400]), class: "featurette-image img-fluid mx-auto", alt: event.name %>
+        <% else %>
+        <%= image_tag asset_path('400.png'), class: "card-img-top", alt: event.name %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= event.name %></h5>
+          <p class="cut-overflow-text card-text">
+            <%= event.description %>
+          </p>
+          <div class="card-text">
+            <ul>
+              <li>Starts: <%= event.starts_at&.strftime("%a %d %B %Y, %H:%M") %></li>
+              <li>Ends: <%= event.ends_at&.strftime("%a %d %B %Y, %H:%M") %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="btn-group-vertical">
+          <%= link_to 'Event Details', event_path(event), class: "btn btn-primary text-left"  %>
+          <%= link_to 'Event Exhibitors', event_companies_path(event), class: "btn btn-secondary text-left" %>
+          <% if policy(event).update? %>
+          <%= link_to 'Edit', edit_event_path(event), class: "btn btn-success text-left" %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-left" %>
+          <% end %>
+          <% if user_signed_in?  %>
+          <% elsif user_signed_in? && !current_user.part_of_event?(event) %>
+          <%= link_to 'Join Event', join_event_path(event), remote: true, method: :post, class: "btn btn-success text-left", id: "join-#{event.id}" %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div> 
+  <div class="row">
+    <% if policy(Event).create? %>
+    <div class="col"><%= link_to 'Add Event', new_event_path, class: "btn btn-primary btn-lg" %></div>
+    <% end %>
+  </div>
+</div>

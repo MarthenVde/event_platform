@@ -1,0 +1,37 @@
+<%= form_with(model: zoom_user, local: true) do |form| %>
+  <% if zoom_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(zoom_user.errors.count, "error") %> prohibited this zoom_user from being saved:</h2>
+
+      <ul>
+        <% zoom_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_type %>
+    <%= form.select :user_type, [['Basic', 1], ['Licenced', 2], ['Premium', 3]],{prompt:'Please Select...'},{class: "form-control"}%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

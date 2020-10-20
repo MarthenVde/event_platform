@@ -1,0 +1,19 @@
+<div class="card-deck">
+  <% @event.company_exhibitors.each do |company_exhibitor| %>
+  <div class="card">
+    <% if company_exhibitor.user.avatar.attached? %>
+    <%= image_tag company_exhibitor.user.avatar.variant(resize_to_fit: [300, 300]), class: "card-img-top", alt: company_exhibitor.user.name %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= company_exhibitor.user.name %> <%= company_exhibitor.user.last_name %></h5>
+      <p class="card-text">
+      <ul>
+        <li>Represents: <%= company_exhibitor.company.name %></li>
+        <li>Email: <%= company_exhibitor.user.email %></li>
+        <li>Phone: <%= company_exhibitor.user.phone %></li>
+      </ul>
+      </p>
+    </div>
+  </div>
+  <% end %>
+</div>

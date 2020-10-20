@@ -1,0 +1,17 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+
+<% content_for :social_links do %>
+<%= render 'events/social_links', event: @event %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1><%= @event.name %></h1>
+    <h2>New Stall</h2>
+  </div>
+</div>
+<div class="container">
+
+<%= render 'form', company: @company, url: event_companies_path(@event), method: :post, back_path: event_companies_path(@event) %>
+</div>

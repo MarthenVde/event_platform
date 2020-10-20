@@ -1,0 +1,13 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+      <h1>User Management</h1>
+      <h2><%= @user.name %> <%= @user.last_name %></h2>
+  </div>
+</div>
+<div class="container">
+  <%= render 'form', user: @user %>
+</div>
+  

@@ -1,0 +1,52 @@
+<div class="row mt-4 justify-content-center">
+  <% @companies.each do |company| %>
+  <div class="card mx-2 mb-3">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="companies-index-block">
+            <% if company.flipcard_banner.attached? %>
+            <%= image_tag company.flipcard_banner.variant(resize_to_fill: [400, 250]), class: "card-img-top image", alt: company.name %>
+            <% else %>
+            <%= image_tag asset_path('400.png'), class: "card-img-top image", alt: company.name, style: "max-width: 400px; max-height: 185px" %>
+            <% end %>
+            <div class="middle">
+              <% if company.avatar.attached? && company.avatar.variable? %>
+              <%= image_tag company.avatar.variant(resize_to_fill: [60, 60, { gravity: 'center' }]), class: "avatar img-circle" %>
+              <% else %>
+              <%= image_tag asset_path('400.png'), class: "avatar img-circle", style: "max-height: 60px" %>
+              <% end %>
+            </div>
+            <div class="text"><%= company.name %></div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <h4>What we do?</h4>
+          <span class="card-elipses text-center" style="margin: 10px;"><%= company.description_text %></span>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group-vertical">
+      <% if policy(company).show?  %>
+      <%= link_to 'Show', event_company_path(company.event, company), class: "btn btn-primary text-left" %>
+      <% end %>
+      <% if policy(company).update? %>
+      <%= link_to 'Edit', edit_event_company_path(company.event, company), class: "btn btn-secondary text-left" %>
+      <%= link_to 'Destroy', event_company_path(company.event, company), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-left" %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="row justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
+<hr>
+<div class="row">
+  <div class="col"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %></div>
+  <% if policy(@event).create_company? %>
+  <div class="col-auto">
+    <%= link_to 'Add Company (Stall)', new_event_company_path(@event), class: "btn btn-primary btn-lg" %>
+  </div>
+  <% end %>
+</div>

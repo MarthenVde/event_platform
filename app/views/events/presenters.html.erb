@@ -1,0 +1,22 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Presenters</h1>
+    <h2><%= @event.name %></h2>
+  </div>
+</div>
+<div class="container">
+
+  <div class="card-deck">
+    <div class="card-deck">
+      <%= render 'presenters', resource: @event %>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col pull-left"><%= link_to 'Back', event_path(@event), class: "btn btn-secondary btn-lg" %></div>
+  </div>
+</div>

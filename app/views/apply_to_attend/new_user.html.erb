@@ -1,0 +1,13 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Register as Visitor</h1>
+    <h2><%= @event.name %></h2>
+  </div>
+</div>
+<div class="container">
+  <%= render 'form', user: @user %>
+</div>

@@ -1,0 +1,104 @@
+<div class="site-blocks-cover overlay parallax"
+  style='background-position: center center; background-image: url(<%= event.banner.attached? ? url_for(event.banner) : url_for(asset_url("1900x700.png")) %> );'>
+  <div class="banner-container mx-auto" style="height: 100%">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-12">
+        <div class="align-items-center justify-content-right text-center banner-text-background">
+          <div class="col-12">
+            <div class="row justify-content-right mb-4">
+              <div class="col-12 text-center">
+                <h1><%= event.name %></h1>
+                <h3><%= event.starts_at&.strftime("%a %d %B %Y, %H:%M") %> -
+                  <%= event.ends_at&.strftime("%a %d %B %Y, %H:%M") %></h3>
+                <p><%= event.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <% if user_signed_in? %>
+      <div class="form-group col-md-3">
+        <% if @event.expo_program.attached? %>
+        <%= link_to 'Expo Program',  url_for(@event.expo_program), class: "btn btn-danger", target: '_blank' %>
+        <% end %>
+      </div>
+      <div class="form-group col-md-3">
+        <% if @event.pdf_program.attached? %>
+        <%= link_to 'PDF Program',  url_for(@event.pdf_program), class: "btn btn-danger", target: '_blank' %>
+        <% end %>
+      </div>
+      <div class="form-group col-md-3">
+        <%= link_to 'Info Desk',  contact_event_path(@event), class: "btn btn-success" %>
+      </div>
+      <% end %>
+
+      <%  if DateTime.now < @event.starts_at  %>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <% if !user_signed_in? %>
+          <!-- user not signed in, give option to create event-attendee for event-->
+          <%= link_to 'Register as Visitor', create_user_for_event_path(event), class: "btn btn-success btn-lg text-left" %>
+          <%= link_to 'Apply to Exhibit', new_user_and_company_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+
+          <% elsif !current_user.part_of_event?(event) %>
+          <%= link_to 'Join Event', join_event_path(event), remote: true, method: :post, class: "btn btn-success btn-lg text-left", id: "join-#{event.id}" %>
+          <!-- add different 'apply to exhibit' button here to just create the company when user is logged in-->
+          <!-- TODO: add button here -->
+          <%= link_to 'Apply to Exhibit', new_exhibit_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+          <!-- -->
+
+          <% end %>
+          <% if !user_signed_in? %>
+          <div class="banner-text-secondary-background">
+            <p><%= event.banner_text_short %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% elsif DateTime.now >= @event.starts_at && DateTime.now <= @event.ends_at %>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <% if !user_signed_in? %>
+          <!-- user not signed in, give option to create event-attendee for event-->
+          <%= link_to 'Register as Visitor', create_user_for_event_path(event), class: "btn btn-success btn-lg text-left" %>
+          <%= link_to 'Apply to Exhibit', new_user_and_company_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+
+          <% elsif !current_user.part_of_event?(event) %>
+          <%= link_to 'Join Event', join_event_path(event), remote: true, method: :post, class: "btn btn-success btn-lg text-left", id: "join-#{event.id}" %>
+          <!-- add different 'apply to exhibit' button here to just create the company when user is logged in-->
+          <!-- TODO: add button here -->
+          <%= link_to 'Apply to Exhibit', new_exhibit_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+          <!-- -->
+
+          <% end %>
+          <% if !user_signed_in? %>
+          <div class="banner-text-secondary-background">
+            <p><%= event.banner_text_short %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% elsif DateTime.now > @event.ends_at %>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <% if !user_signed_in? %>
+          <!-- user not signed in, give option to create event-attendee for event-->
+          <%= link_to 'Visitor notification of future events', create_user_for_event_path(event), class: "btn btn-success btn-lg text-left" %>
+          <%= link_to 'Exhibitor notification of future events', new_user_and_company_for_event_path(event), class: "btn btn-secondary btn-lg text-left" %>
+
+
+          <% end %>
+          <% if !user_signed_in? %>
+          <div class="banner-text-secondary-background">
+            <p><%= event.banner_text_short %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

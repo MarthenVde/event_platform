@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <div class="" style="padding: 15px;">
+    <%= f.hidden_field :_destroy %>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8">
+          <hr>
+          <h3><%= f.object.name %></h3>
+          <%= f.label :"Enable as a Featured Exhibitor.", class: "control-label", for: "make_featured_companies_exhibitors" %>
+          <%= f.check_box :featured, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

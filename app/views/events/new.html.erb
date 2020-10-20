@@ -1,0 +1,12 @@
+<% content_for :main_navbar do %>
+<%= render 'layouts/navbar' %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Create Event</h1>
+  </div>
+</div>
+
+<div class="container">
+  <%= render 'form', event: @event, back_path: events_path %>
+</div>

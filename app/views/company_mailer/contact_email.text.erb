@@ -1,0 +1,12 @@
+Contact Request received from <%= @company.name %>
+===============================================
+
+Person Contacting you:
+Name: <%= @contact_params[:first_name] %>
+Email: <%= @contact_params[:email] %>
+Phone: <%= @contact_params[:contact_number] %>
+Last Name: <%= @contact_params[:last_name] %>
+Topic: <%= @contact_params[:topic] %>
+
+Message:
+<%= @contact_params[:message] %>

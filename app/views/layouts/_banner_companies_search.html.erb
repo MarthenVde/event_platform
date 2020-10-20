@@ -1,0 +1,23 @@
+<div class="site-blocks-cover">
+  <div class="container" style="height: 100%">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-lg-8 col-md-12">
+        <div class="container" style="height: 100%">
+          <div class="search-bar rounded p-3 p-lg-4 position-relative banner-search-background">
+            <form class="">
+              <div class="row">
+                <div class="col-lg-6"><input name="search" placeholder="What are you searching for?" type="text"
+                    class="border-0 shadow-0 form-control" style="padding: 10px;"></div>
+                <div class=" col-lg-3"><button type="submit"
+                    class="btn-block h-100  btn btn-primary btn-md">Search</button>
+                </div>
+                <div class=" col-lg-3"><%= link_to 'Reset Search', event_companies_path(@event), class: "btn-block h-100  btn btn-danger btn-md", style: "padding-top: 12px;" %>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Contact</h1>
+    <h2><%= @event.name %></h2>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :sales_person_name %>
+          <%= form.text_field :sales_person_name, class: 'form-control', placeholder: :sales_person_name %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :contact_number%>
+          <%= form.telephone_field :contact_number, class: 'form-control', placeholder: :contact_number%>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :web_address%>
+          <%= form.email_field :web_address, class: 'form-control', placeholder: :web_address %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :address%>
+          <%= form.telephone_field :address, class: 'form-control', placeholder: :address%>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :sales_email%>
+          <%= form.email_field :sales_email, class: 'form-control', placeholder: :sales_email %>
+        </div>
+      </div>
+
+
+      :web_address, :sales_email, :sales_person_name, :address,
+
+      <br>
+      <div class="col-lg-4 col-md-12">
+        <div class="aos-init aos-animate" data-aos="fade" data-aos-delay="100">
+          <div class="col-lg-4">
+            <h3 class="h5 text-black mb-3">Phone</h3>
+            <p class="mb-4"><%= @event.phone %></p>
+            <h3 class="h5 text-black mb-3">Email Address</h3>
+            <p class="mb-0"></a><%= @event.email %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

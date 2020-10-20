@@ -1,0 +1,501 @@
+<%= form_with(model: event, local: true) do |form| %>
+<% if event.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h4>
+  <hr>
+  <p class="mb-0">
+  <ul>
+    <% event.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  </p>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col">
+    <%= link_to 'Back', back_path, class: "btn btn-secondary btn-lg" %>
+  </div>
+  <div class="col-auto">
+    <%= form.submit :Save, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+<hr>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+      aria-selected="true">Home Page (Pre-event)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="general-during-event-tab" data-toggle="tab" href="#general-during-event" role="tab"
+      aria-controls="general-during-event" aria-selected="true">Home Page (During-event)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="general-post-event-tab" data-toggle="tab" href="#general-post-event" role="tab"
+      aria-controls="general-post-event" aria-selected="true">Home Page (Post-event)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="faqs-tab" data-toggle="tab" href="#faqs" role="tab" aria-controls="faqs"
+      aria-selected="false">FAQ's (Visitors)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="faqs-exhibitors-tab" data-toggle="tab" href="#faqs-exhibitors" role="tab"
+      aria-controls="faqs-exhibitors" aria-selected="false">FAQ's (Exhibitors)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="photos-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photos"
+      aria-selected="false">Gallery (Event Home)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
+      aria-selected="false">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+      aria-selected="false">Contact</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="user-description-tab" data-toggle="tab" href="#user-description" role="tab"
+      aria-controls="user-description" aria-selected="false">Register as Visitor</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="apply-to-Exhibit-tab" data-toggle="tab" href="#apply-to-Exhibit" role="tab"
+      aria-controls="apply-to-Exhibit" aria-selected="false">Apply to Exhibit</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="who-should-attend-tab" data-toggle="tab" href="#who-should-attend" role="tab"
+      aria-controls="who-should-attend" aria-selected="false">Who Should Attend</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="presentations-tab" data-toggle="tab" href="#presentations" role="tab"
+      aria-controls="presentations" aria-selected="false">Presentations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="workshops-tab" data-toggle="tab" href="#workshops" role="tab" aria-controls="workshops"
+      aria-selected="false">Workshops</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="exhibitors-tab" data-toggle="tab" href="#exhibitors" role="tab" aria-controls="exhibitors"
+      aria-selected="false">Exhibitors</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="advertisements-tab" data-toggle="tab" href="#advertisements" role="tab"
+      aria-controls="advertisements" aria-selected="false">Advertisements</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+    <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+        data-content="This page is used to setup the main page for the event. ">
+        <span class="fas fa-info-circle"></span>
+      </span>Event Details</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :name, class: "control-label" %>
+        <%= form.text_field :name, class: 'form-control', placeholder: :name %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :"Description on Index Card", class: "control-label" %>
+        <%= form.text_area:description, class: 'form-control', placeholder: :description %>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :banner_text_short, class: 'control-label' %>
+      <%= form.text_field :banner_text_short, class: 'form-control', placeholder: :description %>
+    </div>
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <fieldset>
+          <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+              data-content="Generate the required event navigation buttons by uploading images.">
+              <span class="fas fa-info-circle"></span>
+            </span>Navigation Button Images</h3>
+          <hr>
+          <%= render "nav_button_image_form", f: form %>
+        </fieldset>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+        data-content="Set the start and end date for the Event.">
+        <span class="fas fa-info-circle"></span>
+      </span>Date and Time</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :starts_at, class: "control-label" %>
+        <br>
+        <%= form.datetime_select :starts_at, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :ends_at, class: "control-label" %>
+        <br>
+        <%= form.datetime_select :ends_at, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Use the text editor to create the front page information/ images. ">
+        <span class="fas fa-info-circle"></span>
+      </span>Home Page Information</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <%= form.rich_text_area :home_page_data, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Upload the Event banner and Logo here">
+        <span class="fas fa-info-circle"></span>
+      </span>Event Banner and Logo</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label "Logo" %>
+        <%= form.file_field :avatar %>
+        <% if event.avatar.attached? && event.avatar.variable? %>
+        <%= image_tag event.avatar.variant(resize_to_fit: [50, 50]) %>
+        <% end %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form.label :banner %>
+        <%= form.file_field :banner %>
+        <% if event.banner.attached? && event.banner.variable? %>
+        <%= image_tag event.banner.variant(resize_to_fit: [50, 50]) %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Use the tag after the '=' sign for the path of the youtube URL. e.g https://www.youtube.com/something?=2nUC66341lU">
+        <span class="fas fa-info-circle"></span>
+      </span>Video</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <fieldset>
+          <%= form.fields_for :videos do |videos_form| %>
+          <%= render "video_fields", f: videos_form %>
+          <% end %>
+          <%= link_to_add_fields "Add Videos", form, :videos %>
+        </fieldset>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+        data-content="*Upload 9x5 sponser images here, and make sure to include 'https://' when inserting the URL.">
+        <span class="fas fa-info-circle"></span>
+      </span>Sponsors</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <fieldset>
+          <%= form.fields_for :sponsors do |sponsor_form| %>
+          <%= render "sponsor_fields", f: sponsor_form %>
+          <% end %>
+          <%= link_to_add_fields "Add Sponsors", form, :sponsors %>
+        </fieldset>
+      </div>
+    </div>
+    <br>
+    <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+        data-content="inserting the social media URL's accordingly. Make sure to include 'https://'.">
+        <span class="fas fa-info-circle"></span>
+      </span>Social Media</h3>
+    <hr>
+    <%= form.fields_for :social do |social_form| %>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= social_form.label :facebook_url, class: 'control-label' %>
+        <%= social_form.text_field :facebook_url, class: "form-control", placeholder: :facebook_url  %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= social_form.label :twitter_url, class: 'control-label' %>
+        <%= social_form.text_field :twitter_url, class: "form-control", placeholder: :twitter_url  %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= social_form.label :instagram_url, class: 'control-label' %>
+        <%= social_form.text_field :instagram_url, class: "form-control", placeholder: :instagram_url  %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= social_form.label :linkedin_url, class: 'control-label' %>
+        <%= social_form.text_field :linkedin_url, class: "form-control", placeholder: :linkedin_url  %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="general-during-event" role="tabpanel" aria-labelledby="general-during-event-tab">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :expo_program %>
+        <%= form.file_field :expo_program %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="general-post-event" role="tabpanel" aria-labelledby="general-post-event-tab">
+    <h1>Post Event Details comes here...</h1>
+  </div>
+  <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+    <fieldset>
+      <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+          data-content="Upload gallery photos's here. It is important to upload jpg, jpeg or PNG image file types.">
+          <span class="fas fa-info-circle"></span>
+        </span>Gallery Tab Contents</h3>
+      <hr>
+      <%= form.fields_for :attachments do |attachments_form| %>
+      <%= render "attachment_fields", f: attachments_form %>
+      <% end %>
+      <%= link_to_add_fields "Add Images", form, :attachments %>
+    </fieldset>
+  </div>
+  <div class="tab-pane fade" id="user-description" role="tabpanel" aria-labelledby="user-description-tab">
+    <fieldset>
+      <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+          data-content="Do not skip this. Insert the type of user. e.g Parent, Child, Company Representitive... ">
+          <span class="fas fa-info-circle"></span>
+        </span>What describes you dropdown (e.g Parent, child ...)</h3>
+      <hr>
+      <%= form.fields_for :user_description_selects do |description_form| %>
+      <%= render "user_description_select_fields", f: description_form %>
+      <% end %>
+      <%= link_to_add_fields "Add User Description", form, :user_description_selects %>
+    </fieldset>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+            data-content="Insert the terms and conditions here.">
+            <span class="fas fa-info-circle"></span>
+          </span>Terms and Conditions</h3>
+        </button>
+        <hr>
+        <%= form.rich_text_area :terms_and_conditions, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+            data-content="Insert the Event About us information here.">
+            <span class="fas fa-info-circle"></span>
+          </span>About</h3>
+        <hr>
+        <%= form.rich_text_area :about, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+            data-content="Insert the Event Frequently asked Questions/Awnswers here.">
+            <span class="fas fa-info-circle"></span>
+          </span>FAQ's</h3>
+        <hr>
+        <%= form.rich_text_area :faq, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="apply-to-Exhibit" role="tabpanel" aria-labelledby="apply-to-Exhibit-tab">
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Upload the PDF registration documents here...">
+        <span class="fas fa-info-circle"></span></h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :prospectus_document %>
+        <%= form.file_field :prospectus_document %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :Expo_Program %>
+        <%= form.file_field :Expo_Program %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :exhibit_application_form %>
+        <%= form.file_field :exhibit_application_form %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+            data-content="Insert the Event Frequently asked Questions/Awnswers here.">
+            <span class="fas fa-info-circle"></span>
+          </span>Exhibitor pre-application FAQ’s</h3>
+        <hr>
+        <%= form.rich_text_area :faq_exhibitor, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="faqs-exhibitors" role="tabpanel" aria-labelledby="faqs-exhibitors-tab">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+            data-content="Insert the Event Frequently asked Questions/Awnswers here.">
+            <span class="fas fa-info-circle"></span>
+          </span>FAQ's</h3>
+        <hr>
+        <%= form.rich_text_area :apply_faq_exhibitor, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="presentations" role="tabpanel" aria-labelledby="presentations-tab">
+    <fieldset>
+      <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+          data-content="Setup the presentation page here.">
+          <span class="fas fa-info-circle"></span>
+        </span>Presentations:</h3>
+      <hr>
+      <%= form.fields_for :presentations do |presentations_form| %>
+      <%= render "presentation_fields", f: presentations_form %>
+      <% end %>
+      <%= link_to_add_fields "Add Presentations", form, :presentations %>
+    </fieldset>
+  </div>
+  <div class="tab-pane fade" id="workshops" role="tabpanel" aria-labelledby="workshops-tab">
+    <fieldset>
+      <h3>Workshops:</h3>
+      <hr>
+      <%= form.fields_for :workshops do |workshop_form| %>
+      <%= render "workshop_fields", f: workshop_form %>
+      <% end %>
+      <%= link_to_add_fields "Add Workshops", form, :workshops %>
+    </fieldset>
+  </div>
+  <div class="tab-pane fade" id="exhibitors" role="tabpanel" aria-labelledby="exhibitors-tab">
+    <fieldset>
+      <div class="form-group col-md-6">
+        <h3>Enable all Featured Exhibitors?</h3>
+        <%= form.check_box :show_featured_companies, class: 'form-control' %>
+      </div>
+    </fieldset>
+    <fieldset>
+      <%= form.fields_for :companies do |company_form| %>
+      <%= render "company_fields", f: company_form %>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="tab-pane fade" id="advertisements" role="tabpanel" aria-labelledby="advertisements-tab">
+    <div class="form-group col-md-6">
+      <fieldset>
+        <h3>Advertisement:</h3>
+        <%= form.fields_for :advertisements do |images_form| %>
+        <%= render "advertisement", f: images_form %>
+        <% end %>
+        <%= link_to_add_fields "Add Advertisement", form, :advertisements %>
+      </fieldset>
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <h3>Information Desk</h3>
+        <%= form.rich_text_area  :info_desk, class: 'form-control' %>
+      </div>
+    </div>
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Setup email address that will recieve the contact emails from users (For Event Admin)">
+        <span class="fas fa-info-circle"></span>
+      </span>Contact Details (Event)</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :'Contact/Receive email' %>
+        <%= form.text_field :email, class: 'form-control', placeholder: 'admin@eventmail.co.za' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form.label :phone %>
+        <%= form.text_field :phone, class: 'form-control', placeholder: :phone %>
+      </div>
+    </div>
+
+    <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="Setup the SMTP contact form for this Event.">
+        <span class="fas fa-info-circle"></span>
+      </span>Email SMTP Settings</h3>
+    </button>
+    <hr>
+    <%= form.fields_for :mail_setting do |mail_setting_form| %>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <%= mail_setting_form.label :email, class: 'control-label' %>
+        <%= mail_setting_form.text_field :email, class: "form-control", placeholder: 'e.g. no-reply@eventmail.co.za'  %>
+      </div>
+      <div class="form-group col-md-3">
+        <%= mail_setting_form.label :address, class: 'control-label' %>
+        <%= mail_setting_form.text_field :address, class: "form-control", placeholder: 'e.g. smtp.gmail.com'  %>
+      </div>
+      <div class="form-group col-md-3">
+        <%= mail_setting_form.label :port, class: 'control-label' %>
+        <%= mail_setting_form.text_field :port, class: "form-control", placeholder: 'e.g. 587'  %>
+      </div>
+      <div class="form-group col-md-3">
+        <%= mail_setting_form.label :password, class: 'control-label' %>
+        <%= mail_setting_form.text_field :password, class: "form-control", placeholder: 'email password'  %>
+      </div>
+      <div class="form-group col-md-3">
+        <%= mail_setting_form.label :starttls_auto, class: 'control-label' %>
+        <%= mail_setting_form.check_box :starttls_auto, class: "form-control" %>
+      </div>
+    </div>
+    <% end %>
+    <h3>Lets Chat:<span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+        data-content="For instructions on how to create a Chatra ID see section 2 in the 'FAQs and other tips to setup your online stall' on the General Details tab. Then click the 'Create a Chatra account here'-link to create a Chatra Account for the Chatbox.">
+        <span class="fas fa-info-circle"></span>
+      </span></h3>
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <a href="https://chatra.com/">Create a chatra account here:</a>
+        <br>
+        <%= form.label :"Chatra ID (chatbox - Optional)", class: "control-label" %>
+        <%= form.text_field :chatra_id, class: 'form-control', placeholder: :chatra_id %>
+      </div>
+    </div>
+    <hr>
+    <h1>Meeting link: (Zoom or Goto Meeting - Optional)</h1>
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <%= form.text_field :meeting_link, class: 'form-control', placeholder: :meeting_link  %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="who-should-attend" role="tabpanel" aria-labelledby="who-should-attend-tab">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <h3>Who Should Attend</h3>
+        <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
+          data-content="Insert Who Should attend information and images here.">
+          <span class="fas fa-info-circle"></span>
+        </a>
+        <hr>
+        <%= form.rich_text_area :who_should_attend, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <%= link_to 'Back', back_path, class: "btn btn-secondary btn-lg" %>
+    </div>
+    <div class="col-auto">
+      <%= form.submit :Save, class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+

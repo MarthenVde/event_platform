@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+  <h1>Welcome as an exhibitor staff member at the <%= @company.event.name %></h1>
+
+  <h4>You were added to: <%= @company.name %>, with the following login details: </h4>
+  <ul>
+    <li>email: <%= @email %></li>
+    <li>password: <%= @password %></li>
+    <li>login link: <%= sign_in_new_event_url(@company.event) %></li>
+  </ul>
+
+  <p>You can also reset your password by clicking on <%= password_new_event_url(@company.event) %></p>
+
+  <h4>To setup your stall: </h4>
+  <ul>
+    <li>Log in with the auto generated login details =></li>
+    <li style="color:red">Click on the "Exhibitor tab =></li>
+    <li style="color:red">Locate your stall and start editing</li>
+    <li style="color:red">Complete all the fields on the Exhibitor tabs. Read the <i>"FAQ's and other tips to setup you online stall."</i> just below the taskbar.</li>
+
+  </ul>
+
+  <p>
+   <p>To add another colleague as a staff member of your exhibition go to the  <b style="color:red">Manage Stall Staff</b> tab. When you submit the details of a new <i style="color:red">staff</i> member <b style="color:red">he/she</b> will receive an email with their login details.</p>  
+
+    <br><br>
+    For any assistance: +27 87 231 1644 or expo@tuisskolers.org
+    <br><br>
+    Regards
+    <br>
+    The Expo team
+  </p>
+</body>
+
+</html>
+
+

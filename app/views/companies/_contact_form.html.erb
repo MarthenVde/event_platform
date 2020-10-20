@@ -1,0 +1,98 @@
+<h1>Contact us</h1>
+<div class="container">
+  <div class="col-md-3">
+    <% if @company.social&.facebook_url.present? %>
+    <a href="<%= @company.social&.facebook_url %>" class="pl-0 pr-1"><span class="fab fa-facebook fa-1x"></span></a>
+    <% end %>
+    <% if @company.social&.twitter_url.present? %>
+    <a href="<%= @company.social&.twitter_url %>" class="pl-3 pr-1"><span class="fab fa-twitter fa-1x"></span></a>
+    <% end %>
+    <% if @company.social&.instagram_url.present? %>
+    <a href="<%= @company.social&.instagram_url %>" class="pl-3 pr-1"><span class="fab fa-instagram fa-1x"></span></a>
+    <% end %>
+    <% if @company.social&.linkedin_url.present? %>
+    <a href="<%= @company.social&.linkedin_url%>" class="pl-3 pr-"><span class="fab fa-linkedin fa-1x"></span></a>
+    <% end %>
+  </div>
+</div>
+
+
+
+<%= form_with(url: event_company_send_message_path(company.event, company), method: "post", local: true) do |form| %>
+<div class="form-row">
+  <div class="col-md-6">
+    <% if @company.meeting_link.present? %>
+    <h4 class="h5 text-black mb-3">Zoom or Goto Meeting</h4>
+    <div class="card mx-2 mb-3">
+      <a href="<%= @company.meeting_link %>" target="_blank">Meeting</a>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: 'form-control', placeholder: :first_name %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: 'form-control', placeholder: :last_name%>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :contact_number%>
+    <%= form.telephone_field :contact_number, class: 'form-control', placeholder: :contact_number%>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :email%>
+    <%= form.email_field :email, class: 'form-control', placeholder: :email %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :topic %>
+    <%= form.select(:topic, ['Exhibit', 'Sponsor', 'Payment', 'Other'], {include_blank: "Choose..."}, { :class => 'form-control' }) %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <%= form.label :message %>
+    <%= form.text_area :message, class: 'form-control', placeholder: :message %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <%= form.submit :Submit, class: "btn btn-primary btn-lg float-right", data: { confirm: 'Thank you for your enquiry we will revert back to you as soon as possible.' } %>
+  </div>
+</div>
+<br>
+<h1>More Info:</h1>
+<br>
+<div class="aos-init aos-animate" data-aos="fade" data-aos-delay="100">
+  <hr>
+  <div class="form-row">
+    <div class="col-md-6">
+      <h4 class="h5 text-black mb-3">Sales Person Contact</h4>
+      <p class="mb-4"><%= @company.tel %></p>
+    </div>
+    <div class="col-md-6">
+      <h4 class="h5 text-black mb-3">Sales Email Address</h4>
+      <p class="mb-0"></a><%= @company.sales_email %></p>
+    </div>
+  </div>
+  <hr>
+  <div class="form-row">
+    <div class="col-md-6">
+      <h4 class="h5 text-black mb-3">Address</h4>
+      <p class="mb-4"><%= @company.address %></p>
+    </div>
+    <div class="col-md-6">
+      <h4 class="h5 text-black mb-3">Web Address</h4>
+      <div class="card mx-2 mb-3">
+        <a href="<%= @company.web_address %>" target="_blank"><%= @company.web_address %></a>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

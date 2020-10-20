@@ -1,0 +1,23 @@
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+<% content_for :social_links do %>
+<%= render 'social_links', event: @event %>
+<% end %>
+<% content_for :page_title do %>
+  <title><%= "#{@event.name} - edit" %> </title>
+<% end %>
+<div class="banner">
+  <div class="mx-auto">
+    <h1>Event and Exhibitor Settings</h1>
+    <h2><%= @event.name %></h2>
+  </div>
+</div>
+<div class="container">
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <h4><%= notice %></h4>
+  </div>
+  <% end %>
+  <%= render 'form', event: @event, back_path: event_path(@event) %>
+</div>

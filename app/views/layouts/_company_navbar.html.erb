@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar_custom navbar-expand-md bg_green_custom fixed-bottom" style="margin-top: 100px;">
+  
+  <a class="navbar-brand" href="<%= event_company_path(@event, @company) %>">
+    <%= @company.name %>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerCompany"
+    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerCompany">
+    <ul class="nav nav-pills ml-auto">
+      <li class="nav-item">
+        <a class="nav-link active" id="intro-tab" data-toggle="tab" href="#intro" aria-controls="intro"
+          aria-selected="true" style="font-size: 20px;">Intro</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="products-and-services-tab" data-toggle="tab" href="#products-and-services"
+          aria-controls="products-and-services" aria-selected="false" style="font-size: 20px;">Products and Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" aria-controls="videos"
+          aria-selected="false" style="font-size: 20px;">Videos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="photos-tab" data-toggle="tab" href="#photos" aria-controls="photos"
+          aria-selected="false" style="font-size: 20px;">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about"
+          aria-selected="false" style="font-size: 20px;">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false" style="font-size: 20px;">Let's Chat</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,116 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA was incorrect, please try again.'
+      recaptcha_unreachable: 'reCAPTCHA verification server error, please try again.'
+  devise:
+    sessions:
+      user:
+        before_event_message: 'Thank you for registering to attend the %{event_name}.
+                              The expo will commence on %{starts_at_date} at %{starts_at_time} and close for visitors on %{ends_at_date} at %{ends_at_time}
+                              The PDF expo program will be completed a week before the expo and we will email the link to download it as soon as it becomes available.
+                              For the duration of the expo you will be able to view presentations, visit and interact with exhibitors and participate in workshops, by signing in with your email address and the password that you have just created.'
+        after_event_message: 'Sorry, but the expo had already expired. Please provide us with your contact details and we will keep you informed of our future expo’s. You can also visit www.homeschoolexpo.co.za for more information.'  
+        during_event_message: 'Thank you for registering to attend the %{event_name}.
+                              For the duration of the expo you will be able to view presentations, visit and interact with exhibitors and participate in workshops.
+                              The expo is currently open and will close for visitors on %{starts_at_date} at %{starts_at_time} Until the closing time you will be able to return at any time to the expo by signing in with your email address and the password that you have just created.'
+ 
+  activerecord:
+    errors:
+      models:
+        attachment:  
+          attributes:
+            attachment: 
+              max_size_error: 'Do not upload more than 3MB'
+        event:  
+          attributes:
+            workshop_image:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            exhibitor_image:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            who_should_attend_image:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            presentation_image:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            avatar:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            banner:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+        company:
+          attributes:
+            banner:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            avatar:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            flipcard_banner:
+                content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+                max_size_error: 'Do not upload more than 3MB'
+        
+        workshop:
+          attributes:
+            banner:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            avatar:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            image:
+                content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+                max_size_error: 'Do not upload more than 3MB'
+        presentation:
+          attributes:
+            banner:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            avatar:
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+            image:
+                content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+                max_size_error: 'Do not upload more than 3MB'
+        attachment:
+          attributes:
+            attachment: 
+              content_type: 'file type is not a supported image. Supported files: png, jpg, jpeg'
+              max_size_error: 'Do not upload more than 3MB'
+

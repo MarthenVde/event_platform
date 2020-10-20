@@ -1,0 +1,58 @@
+<% content_for :banner_content do %>
+<%= render 'layouts/banner_presentation', event: @event %>
+<% end %>
+<% content_for :page_title do %>
+  <title><%= "#{@event.name} - presentations - #{@presentation.title}" %> </title>
+<% end %>
+
+<% content_for :event_navbar do %>
+<%= render 'layouts/event_navbar', event: @event %>
+<% end %>
+<br>
+<%= render 'layouts/avatar', resource: @presentation %>
+<hr>
+<div class="container">
+  <div class="col"><%= link_to 'Back', event_presentations_path(@event), class: "btn btn-secondary btn-lg" %>
+  </div>
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <h4><%= notice %></h4>
+  </div>
+
+  <% end %>
+  <br>
+
+  <% @presentation.videos.each do |video| %>
+  <iframe height="600px" width="100%" src="https://www.youtube.com/embed/<%= video.path %>" frameborder="0"
+    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <% end %>
+
+  <div class="card-columns">
+    <div class="card">
+      <div class="card-body">
+        <h2><%= "Meet " %><%= @presentation.name %></h2>
+        <br>
+        <%= @presentation.presentation_presenter_info %>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h2><%= "About the Presentation" %></h2>
+        <br>
+        <%= @presentation.about %>
+      </div>
+    </div>
+
+    <% @presentation.information_blocks.each do |info_block| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= info_block.title%></h5>
+        <p class="card-text"><%= info_block.about %><br></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col"><%= link_to 'Back', event_presentations_path(@event), class: "btn btn-secondary btn-lg" %>
+  </div>
+</div>

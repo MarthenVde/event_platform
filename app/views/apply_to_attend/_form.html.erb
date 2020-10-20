@@ -1,0 +1,11 @@
+<%= form_with(model: @user, url: create_user_for_event_path, method: "post", local: true) do |form| %>
+<%  if DateTime.now < @event.starts_at  %>
+<div class="form-group col-md-12">
+  <%= render 'apply_to_attend/before_form' %>
+</div>
+<% elsif DateTime.now > @event.ends_at %>
+<div class="form-group col-md-12">
+  <%= render 'apply_to_attend/after_form' %>
+</div>
+<% end %>
+<% end %>
