@@ -9,7 +9,7 @@ cat ~/.ssh/id_rsa.pub #copy-paste this onto Digital Ocean settings to give compu
 
 Copy this newly generated SSH key and paste the newly generated key to Droplet (only if it has not already been added)
 
-### Setup newly created Droplet
+### Setup newly created Droplet (Ubuntu droplet with rails)
 #### Step 1 (clone project to server)
 ```
 ssh rails@<server-ip-here>
