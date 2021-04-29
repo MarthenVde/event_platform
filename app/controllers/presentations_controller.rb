@@ -7,9 +7,9 @@ class PresentationsController < ApplicationController
 
   def index
     authorize Presentation
-    @featured_presentations = @event.presentations.where(presentation_type: 'featured').order('name')
-    @webcam_presentations = @event.presentations.where(presentation_type: 'webcam').order('name')
-    @speaker_presentations = @event.presentations.where(presentation_type: 'speaker').order('name')
+    @featured_presentations = @event.presentations.where(presentation_type: 'featured').order("updated_at DESC")
+    @webcam_presentations = @event.presentations.where(presentation_type: 'webcam').order("updated_at DESC")
+    @speaker_presentations = @event.presentations.where(presentation_type: 'speaker').order("updated_at DESC")
   end
 
   # GET /companies/1

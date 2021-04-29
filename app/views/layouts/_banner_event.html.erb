@@ -8,8 +8,10 @@
             <div class="row justify-content-right mb-4">
               <div class="col-12 text-center">
                 <h1><%= event.name %></h1>
-                <h3><%= event.starts_at&.strftime("%a %d %B %Y, %H:%M") %> -
+                <% if !@event.disregard_date? %>
+                  <h3><%= event.starts_at&.strftime("%a %d %B %Y, %H:%M") %> -
                   <%= event.ends_at&.strftime("%a %d %B %Y, %H:%M") %></h3>
+                <% end %>
                 <p><%= event.description %></p>
               </div>
             </div>
