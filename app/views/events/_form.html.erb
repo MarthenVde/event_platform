@@ -140,6 +140,20 @@
         <%= form.datetime_select :ends_at, class: "form-control" %>
       </div>
     </div>
+    <h3><span data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover"
+        data-content="Check that box if you want to make that event regardless of date and time">
+        <span class="fas fa-info-circle"></span>
+      </span>Disregard Date and Time</h3>
+    <hr>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <%= form.label :disregard_date_and_time, class: "control-label" %>
+      </div>
+      <div class="form-group col-md-1">
+        <%= form.check_box :disregard_date, class: "form-control", style:"width: 20px;
+        height: 27px !important;" %>
+      </div>
+    </div>
     <br>
     <h3><span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top"
         data-content="Use the text editor to create the front page information/ images. ">

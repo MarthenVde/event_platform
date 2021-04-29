@@ -138,7 +138,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:show_featured_companies, :chatra_id, :meeting_link, :info_desk, :who_should_attend, :pdf_program, :expo_program, :apply_faq_exhibitor, :prospectus_document, :information_blocks, :exhibit_application_form, :apply_to_exhibit, :email, :banner_text_short, :phone, :workshop_image, :presentation_image, :exhibitor_image, :who_should_attend_image, :home_page_data, :introduction, :about, :terms_and_conditions, :description, :faq, :faq_exhibitor, :title, :starts_at, :ends_at, :avatar, :banner, :name,
+      params.require(:event).permit(:disregard_date, :show_featured_companies, :chatra_id, :meeting_link, :info_desk, :who_should_attend, :pdf_program, :expo_program, :apply_faq_exhibitor, :prospectus_document, :information_blocks, :exhibit_application_form, :apply_to_exhibit, :email, :banner_text_short, :phone, :workshop_image, :presentation_image, :exhibitor_image, :who_should_attend_image, :home_page_data, :introduction, :about, :terms_and_conditions, :description, :faq, :faq_exhibitor, :title, :starts_at, :ends_at, :avatar, :banner, :name,
       videos_attributes: [:id, :path, :title, :description, :video_type, :_destroy],
       attachments_attributes: [:id, :title, :description, :reference, :attachment, :_destroy],
       advertisements_attributes: [:id, :title, :description, :reference, :image, :_destroy],
